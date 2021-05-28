@@ -2,7 +2,14 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
-
+# Use Devise for authentication
+gem 'devise', '~> 4.8'
+# Bulma for styling
+gem "bulma-rails", "~> 0.9.1"
+# Simple Form
+gem 'simple_form'
+# Gravatar
+gem 'gravatar_image_tag', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 # Use sqlite3 as the database for Active Record
@@ -42,6 +49,9 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'better_errors', '~> 2.1', '>= 2.1.1'
+  gem 'guard', '~> 2.17'
+  gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
 end
 
 group :test do
