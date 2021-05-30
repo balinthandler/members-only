@@ -13,36 +13,41 @@
   </head>
 
   <body>
-  <% if flash[:notice] %>
-    <div class="notification is-success global-notification">
-      <p class="notice"><%= notice %></p>
-    </div>
-  <% end %>
-  <% if flash[:alert] %>
-    <div class="notification is-danger global-notification">
-      <p class="alert"><%= alert %></p>
-    </div>
-  <% end %>
 
   <nav class="navbar is-primary">
     <div class="navbar-brand">
     <%= link_to root_path, class: "navbar-item" do %>
       <h1 class="title is-5">MembersOnly</h1>
     <% end %>
-      <div class="navbar-burger burger" data-target="navbarExample">
-        <span class="navbar-item">Sign In</span>
-        <span></span>
-        <span></span>
-      </div>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
 
     <div id="navbarExample" class="navbar-menu">
       <div class="navbar-end">
-        <div class="field is-grouped">
-          <p class="control">
-            <%= link_to 'New Post', new_post_path, class: "button is-info is-inverted" %>
-          </p>
-          <p class="control">Sign up</p>
+        <div class="navbar-item">
+            <a class="navbar-item">
+              <%= link_to 'New Post', new_post_path, class: "button is-info is-inverted" %>
+            </a>
+            <% if user_signed_in? %>
+              <a class="navbar-item">
+                <%= link_to current_user.name, edit_user_registration_path, class: "button is-info" %>
+              </a>
+              <a>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-info" %>
+              </a>
+            <% else %>
+
+            <a class="navbar-item">
+              <%= link_to "Sign In", new_user_session_path, class: "button is-info" %>
+            </a>
+            <a class="navbar-item">
+              <%= link_to "Sign Up", new_user_registration_path, class: "button is-info" %>
+            </a>
+            <% end %>
         </div>
       </div>
     </div>

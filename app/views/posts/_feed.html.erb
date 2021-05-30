@@ -1,3 +1,18 @@
+<div class="column is-one-quarter">
+  <% if user_signed_in? %>
+    <article class="message">
+      <div class="message-header">
+        <%= current_user.name %>
+      </div>
+      <div class="message-body">
+        <p>
+          Posts: <%= current_user.posts.count %>
+        </p>
+      </div>
+    </article>
+  <% end %>
+</div>
+
 <div class="column is-half">
   <article class="media box">
 		<div class="media-content">
@@ -16,10 +31,14 @@
 
         <div class="media-content">
           <div class="content">
-            <strong>Balint</strong>
-            <p><%= post.body %></p>
+            <% if user_signed_in? %>
+              <strong><%= post.user.name %></strong><br />
+              <strong>@<%= post.user.username %></strong>
+            <% end %>
+              <p><%= post.body %></p>
         </div>
 
+        <% if current_user == post.user %>
         <nav class="level">
           <div class="level-left is-mobile">
             <%= link_to post, class: "level-item" do %>
@@ -33,6 +52,7 @@
             <% end %>
           </div>
         </nav>
+        <% end %>
       </article>
     </div>
   <% end %>
