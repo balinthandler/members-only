@@ -19,13 +19,14 @@
    color: white;
  }
 
- .images {
+ // round images
+ .image {
    border-radius: 50%;
    img {
-    border-radius: 50%;
+     border-radius: 50%;
    }
  }
 
- .notifiaction:not(:last-child) {
+ .notification:not(:last-child) {
    margin-bottom: 0;
  }
